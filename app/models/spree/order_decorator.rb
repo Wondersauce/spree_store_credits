@@ -18,7 +18,7 @@ module Spree
       # consume users store credit once the order has completed.
       consume_users_credit
     end
-    alias_method_chain :finalize!, :consume_users_credit, unless self.method_defined? :finalize_with_consume_users_credit!
+    alias_method_chain :finalize!, :consume_users_credit unless self.method_defined? :finalize_with_consume_users_credit!
 
     def store_credit_amount
       adjustments.store_credits.sum(:amount).abs

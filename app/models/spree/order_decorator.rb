@@ -24,16 +24,7 @@ module Spree
       adjustments.store_credits.sum(:amount).abs
     end
 
-    # override core process payments to force payment present
-    # in case store credits were destroyed by ensure_sufficient_credit
-    def process_payments!
-      if total > 0 && payment.nil?
-        false
-      else
-        ret = payments.each(&:process!)
-      end
-    end
-
+    
     private
 
     # credit or update store credit adjustment to correct value if amount specified

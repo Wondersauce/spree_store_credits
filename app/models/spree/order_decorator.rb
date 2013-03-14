@@ -47,7 +47,7 @@ module Spree
 
       # recalc totals and ensure payment is set to new amount
       update_totals
-      payment.amount = total if payment
+      
     end
 
     def consume_users_credit

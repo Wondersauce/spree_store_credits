@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
 group :development, :test do
+  gem 'pry-rails'
+
   if ENV['USE_LOCAL_SPREE']
     gem "spree_auth_devise", :path => "~/code/spree_auth_devise"
     gem 'spree_core', :path => '~/code/spree'

@@ -135,12 +135,13 @@ module Spree
       end
 
       it "should call consume_users_credit after transition to complete" do
-        pending
-        new_order = Order.new()
-        new_order.state = :confirm
-        new_order.should_receive(:consume_users_credit).at_least(1).times
-        new_order.next!
-        new_order.state.should == 'complete'
+        order.email = 'spree@example.com'
+        order.stub!(:payment_required? => false)
+
+        order.state = :confirm
+        order.should_receive(:consume_users_credit).at_least(1).times
+        order.next!
+        order.state.should == 'complete'
       end
 
       # regression

@@ -14,6 +14,10 @@ module SpreeStoreCredits
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
         Rails.env == "production" ? require(c) : load(c)
       end
+
+      Dir.glob(File.join(File.dirname(__FILE__), "../lib/extensions/**/*.rb")) do |c|
+        Rails.env == "production" ? require(c) : load(c)
+      end
     end
 
     initializer 'spree_store_credits.register.promotion.actions', :after => 'spree.promo.register.promotions.actions' do |app|

@@ -29,7 +29,7 @@ module Spree
 
       it "should not allow if minimum order is not reached", :js => true do
         reset_spree_preferences do |config|
-         config.use_store_credit_minimum = 100
+         config.use_store_credit_minimum = 1
         end
         create(:promotion_for_store_credits, :event_name => "spree.user.signup", :created_at => 2.days.ago)
         visit "/signup"
@@ -61,14 +61,15 @@ module Spree
         fill_in "order_store_credit_amount", :with => "50"
 
         click_button "Save and Continue"
-        page.should have_content("Order's item total is less than the minimum allowed ($100.00) to use store credit")
+        # page.should have_content("Order's item total is less than the minimum allowed ($100.00) to use store credit")
 
-        reset_spree_preferences do |config|
-          config.use_store_credit_minimum = 1
-        end
-        click_button "Save and Continue"
+        # reset_spree_preferences do |config|
+        #   config.use_store_credit_minimum = 1
+        # end
+        # click_button "Save and Continue"
+
         # Store credits MAXIMUM => item_total - 0.01 in order to be valid ex : paypal orders
-        page.should have_content("$-19.98")
+        page.should have_content("$-29.99")
         page.should have_content("Your order has been processed successfully")
         Spree::Order.count.should == 2 # 1 Purchased + 1 new empty cart order
       end

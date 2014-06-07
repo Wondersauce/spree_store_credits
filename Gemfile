@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :development, :test do
-  version = '2-2-stable'
+  version = 'master'
   gem 'spree_api', github: 'spree/spree', branch: version
   gem 'spree_core', github: 'spree/spree', branch: version
   gem 'spree_frontend', github: 'spree/spree', branch: version

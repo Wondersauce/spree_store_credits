@@ -25,3 +25,10 @@ Deface::Override.new(
   :insert_after => "[data-hook='account_my_orders']",
   :partial => "spree/users/store_credits",
   :disabled => false)
+
+Deface::Override.new(
+  :virtual_path => "spree/admin/general_settings/edit",
+  :name => "admin_general_settings_edit_for_sc",
+  :insert_before => "[data-hook='buttons']",
+  :partial => "spree/admin/store_credits/limit",
+  :disabled => true)

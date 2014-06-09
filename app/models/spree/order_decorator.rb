@@ -65,7 +65,7 @@ Spree::Order.class_eval do
 
     # recalc totals and ensure payment is set to new amount
     update_totals
-    pending_payments.first.update_attribute(:amount, total) if pending_payments.first
+    pending_payments.each { |payment| payment.update_attribute(:amount, total) }
   end
 
   def consume_users_credit
